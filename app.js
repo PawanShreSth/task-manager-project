@@ -8,7 +8,7 @@ app.use(express.json());
 
 // routes
 app.get('/', (req, res, next) => {
-  res.redirect('/hello');
+  res.redirect('/api/v1/tasks');
 });
 
 app.get('/hello', (req, res, next) => {
