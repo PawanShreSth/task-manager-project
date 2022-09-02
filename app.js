@@ -4,6 +4,8 @@ const taskRouter = require('./routes/tasks');
 
 const app = express();
 
+app.use(express.json());
+
 // routes
 app.get('/', (req, res, next) => {
   res.redirect('/hello');
