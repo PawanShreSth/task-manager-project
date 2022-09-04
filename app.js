@@ -3,22 +3,21 @@ const dotenv = require('dotenv');
 dotenv.config();
 const connectDB = require('./db/connect');
 
+const notFound = require('./middleware/not-found');
+const errorHandler = require('./middleware/error-handler');
+
 const taskRouter = require('./routes/tasks');
 
 const app = express();
 
+app.use(express.static('./public'));
 app.use(express.json());
 
 // routes
-app.get('/', (req, res, next) => {
-  res.redirect('/api/v1/tasks');
-});
-
-app.get('/hello', (req, res, next) => {
-  res.send('TASK MANAGER APP');
-});
 
 app.use('/api/v1/tasks', taskRouter);
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = 3000;
 
